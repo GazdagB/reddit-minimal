@@ -8,3 +8,8 @@
   font-family: Helvetica, sans-serif;
 }
 
+@layer base{
+  :root{
+    --color-primary: 55 89 238;
+  }
+}
