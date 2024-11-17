@@ -1,7 +1,10 @@
+import Post from "../../components/Post"
 
 const PostContainer = () => {
   return (
-    <div>PostContainer</div>
+    <div>
+        <Post/>
+    </div>
   )
 }
 
