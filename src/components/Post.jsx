@@ -13,7 +13,7 @@ const Post = ({
   likes = 0
 }) => {
   return (
-    <article className="max-w-[700px] p-5 shadow-lg rounded-md flex relative ps-16">
+    <article className="max-w-[700px] w-full p-5 shadow-lg rounded-md flex relative ps-16">
 
         {/* Vote Container */}
         <div className="absolute top-12 left-6 text-gray-400 font-bold">
