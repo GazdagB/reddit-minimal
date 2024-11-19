@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const profilePic = "https://i.pravatar.cc/300"
 
+
+
 // Subreddits mocks
 export const subredditsMocks = [
   {
@@ -64,7 +66,20 @@ export const postsMocks = [
     imageUrl: "https://picsum.photos/200",
     profileUrl: profilePic,
     upvotes: 42,
-    comments: 8,
+    comments: [
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "AdventureSeeker99",
+        created: "1 hour ago",
+        text: "Looks absolutely breathtaking! Where exactly was this?",
+      },
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "TrailBlazer",
+        created: "30 minutes ago",
+        text: "Wow, I need to visit this place! Great shot.",
+      },
+    ],
     posted: "posted 2 hours ago",
     user: "MountainLover123",
   },
@@ -74,7 +89,20 @@ export const postsMocks = [
     imageUrl: "https://picsum.photos/200",
     profileUrl: profilePic,
     upvotes: 89,
-    comments: 15,
+    comments: [
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "PastaLover",
+        created: "2 hours ago",
+        text: "That looks mouth-watering! Can you share the recipe?",
+      },
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "FoodieFanatic",
+        created: "1 hour ago",
+        text: "I’m drooling over this! Homemade pasta is the best.",
+      },
+    ],
     posted: "posted 5 hours ago",
     user: "FoodieGal",
   },
@@ -84,7 +112,20 @@ export const postsMocks = [
     imageUrl: "https://picsum.photos/200",
     profileUrl: profilePic,
     upvotes: 120,
-    comments: 23,
+    comments: [
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "SunsetLover",
+        created: "3 hours ago",
+        text: "This is stunning! The colors are incredible.",
+      },
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "CityExplorer",
+        created: "2 hours ago",
+        text: "What a view! Makes me want to explore the city even more.",
+      },
+    ],
     posted: "posted 1 day ago",
     user: "SkyWatcher",
   },
@@ -94,7 +135,20 @@ export const postsMocks = [
     imageUrl: "https://picsum.photos/200",
     profileUrl: profilePic,
     upvotes: 30,
-    comments: 5,
+    comments: [
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "ArtEnthusiast",
+        created: "2 hours ago",
+        text: "This is amazing! I love the colors and the emotion in it.",
+      },
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "CreativeMind",
+        created: "1 hour ago",
+        text: "Such a beautiful piece of art! Keep creating.",
+      },
+    ],
     posted: "posted 3 hours ago",
     user: "ArtisticSoul",
   },
@@ -104,7 +158,20 @@ export const postsMocks = [
     imageUrl: "https://picsum.photos/200",
     profileUrl: profilePic,
     upvotes: 55,
-    comments: 10,
+    comments: [
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "GardenGuru",
+        created: "4 hours ago",
+        text: "Great tips! I’ll try these out in my garden.",
+      },
+      {
+        profileUrl: "https://picsum.photos/50",
+        username: "PlantLover",
+        created: "3 hours ago",
+        text: "Thanks for the advice! My tomatoes have been struggling.",
+      },
+    ],
     posted: "posted 8 hours ago",
     user: "GreenThumb",
   },
