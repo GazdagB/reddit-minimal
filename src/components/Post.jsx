@@ -3,6 +3,12 @@
 import imagePlaceholder from '../assets/images/image_placeholder.png';
 import profileImagePlaceholder from '../assets/images/profile_image_placeholder.png';
 
+//Icon Imports
+import { LiaCommentsSolid } from "react-icons/lia";
+import { FaArrowDown } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
+
+
 const Post = ({
   title = 'This is the title of the post',
   image = imagePlaceholder,
@@ -16,10 +22,10 @@ const Post = ({
     <article className="max-w-[700px] w-full p-5 shadow-lg rounded-md flex relative ps-16">
 
         {/* Vote Container */}
-        <div className="absolute top-12 left-6 text-gray-400 font-bold">
-            {/* TODO: Add Icons UP */}
+        <div className="absolute top-12 left-6 text-gray-400 font-bold flex flex-col gap-2 cursor-pointer items-center justify-center">
+            <FaArrowUp />
             {likes}
-            {/* TODO: Add Icons Down */}
+            <FaArrowDown />
         </div>
       <div className="post w-full">
             
@@ -43,8 +49,8 @@ const Post = ({
             <p className="font-bold text-primary">{userName}</p>
           </div>
           <div className="publication-time text-gray-400">{publicationTime}</div>
-          <div className="comment-container">
-            {/* TODO: Place Comment item here */}
+          <div className="comment-container flex gap-2 items-center">
+            <LiaCommentsSolid className='text-xl text-gray-500'/>
             {commentCount}
           </div>
                 </div>
