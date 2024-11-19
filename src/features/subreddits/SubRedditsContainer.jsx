@@ -1,16 +1,13 @@
 import SubReddit from "../../components/SubReddit"
+import { subredditsMocks } from "../../utils/mocks"
 
 const SubRedditsContainer = () => {
   return (
-    <div className="w-1/4 shadow-md min-w-[200px] max-w-[350px] p-5 rounded-md">
+    <div className="w-1/4 shadow-md min-w-[300px] max-w-[450px] p-5 px-14 rounded-md">
         <h2 className="text-2xl font-bold mb-4">Subreddits</h2>
-        <SubReddit/>
-        <SubReddit/>
-        <SubReddit/>
-        <SubReddit/>
-        <SubReddit/>
-        <SubReddit/>
-        <SubReddit/>
+        {subredditsMocks.map(subred => {
+          return (<SubReddit key={subred.id} image={subred.imageUrl} subRedditTitle={subred.name}/>)
+        })}
     </div>
   )
 }
