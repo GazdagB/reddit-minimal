@@ -14,6 +14,13 @@
 npm install
 ```
 
+## Technologies used 
+- UUID, for unique id-s [https://www.npmjs.com/package/uuid](https://www.npmjs.com/package/uuid)
+- Redux 
+- React 
+- readme-md-generator
+- react-icons
+
 ## Author
 
 👤 **Balazs Gazdag**
