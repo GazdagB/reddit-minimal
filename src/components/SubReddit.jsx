@@ -5,7 +5,7 @@ const SubReddit = ({image=subRedditProfilePlaceholder,subRedditTitle="SubredditR
   return (
     <div className="flex items-center gap-2 p-4">
         <img className="h-8 aspect-square rounded-full" src={image} alt="subreddit-image" />
-        <p>{subRedditTitle}</p>
+        <p className="font-bold">{subRedditTitle}</p>
     </div>
   )
 }
