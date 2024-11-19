@@ -10,7 +10,26 @@ import { createSlice } from "@reduxjs/toolkit";
 
 //TODO: Add Reducer: UpVote and DownVote 
 
-const initialState = []; 
+const initialState = [
+{
+    id: "",
+    title: "",
+    imageUrl: "",
+    profileUrl: "",
+    upvotes: 0,
+    posted: "",
+    user: "",
+    commentsOpened: false,
+    comments: [
+        {
+            profilImage: "",
+            username: "",
+            created: "",
+            text: ""
+        }
+    ]
+}
+]; 
 
 const postsSlice = createSlice({
     name: "posts", 
