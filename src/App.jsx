@@ -9,7 +9,7 @@ function App() {
   return (
     <div className=''>
       <Navbar></Navbar>
-      <div className='app flex justify-center items-start w-screen'>
+      <div className='app flex justify-between items-start w-screen'>
         <PostContainer />
         <SubRedditsContainer />
       </div>
