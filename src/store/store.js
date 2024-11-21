@@ -1,12 +1,14 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import subredditsReducer from "../features/subreddits/RedditsSlice";
+import postsReducer from "../features/posts/PostsSlice";
 
-//TODO: Create all of the slices and reducers combine them and initiate a store. 
-
+const rootReducer = combineReducers({
+    subreddits: subredditsReducer,
+    posts: postsReducer
+});
 
 const store = configureStore({
-    reducer: {
+    reducer: rootReducer
+});
 
-    }
-})
-
-export default store; 
+export default store;
