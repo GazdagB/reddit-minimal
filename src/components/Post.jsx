@@ -3,6 +3,7 @@
 import imagePlaceholder from '../assets/images/image_placeholder.png';
 import profileImagePlaceholder from '../assets/images/profile_image_placeholder.png';
 import Comment from './Comment';
+import { createUpvoteString } from '../utils/postsUtils';
 
 //Icon Imports
 import { LiaCommentsSolid } from 'react-icons/lia';
@@ -26,7 +27,7 @@ const Post = ({
         {/* Vote Container */}
         <div className="absolute top-12 left-6 text-gray-400 font-bold flex flex-col gap-2 cursor-pointer items-center justify-center">
           <FaArrowUp />
-          {likes}
+          {createUpvoteString(likes)}
           <FaArrowDown />
         </div>
         <div className="post w-full">
