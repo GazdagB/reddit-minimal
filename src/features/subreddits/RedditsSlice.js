@@ -24,7 +24,7 @@ export const fetchSubreddits = createAsyncThunk(
 const initialState = {
     subreddits: [],
     selectedSubreddit: {
-        subredditName: "pics"
+        subredditName: "r/pics"
     },
     status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null

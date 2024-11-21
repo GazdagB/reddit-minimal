@@ -7,7 +7,10 @@ const SubReddit = ({image=subRedditProfilePlaceholder,subRedditTitle="SubredditR
   const dispatch = useDispatch();
 
   const handleClick = ()=>{
+    
     dispatch(selectSubreddit(subred))
+    console.log("selectSubreddit dispatched");
+    
   }
   return (
     <div onClick={handleClick} className="flex items-center gap-2 p-4">
