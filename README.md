@@ -20,6 +20,7 @@ npm install
 - React 
 - readme-md-generator
 - react-icons
+- framer-motion (In the future)
 
 ## Author
 

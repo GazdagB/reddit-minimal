@@ -11,7 +11,7 @@ const SubRedditsContainer = () => {
 
   useEffect(() => {
     dispatch(fetchSubreddits())
-  }, []);
+  }, [dispatch]);
 
   if (status === "loading") {
     return <div>Loading posts...</div>;
