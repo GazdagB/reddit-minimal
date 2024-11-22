@@ -5,6 +5,8 @@ import { fetchSubreddits } from "./RedditsSlice"
 //import { subredditsMocks } from "../../utils/mocks"
 //import { selectSubreddit } from "./RedditsSlice"
 
+//TODO: Add sceleton loader to subbreddits 
+
 const SubRedditsContainer = () => {
   const dispatch = useDispatch()
   const {subreddits,status,error} = useSelector((state)=> state.subreddits)

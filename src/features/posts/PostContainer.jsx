@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import Post from "../../components/Post";
 import { fetchRedditPosts } from "./PostsSlice";
 
+//TODO: Add sceleton loader to posts 
+
 const PostContainer = () => {
   const dispatch = useDispatch();
   const { posts, status, error } = useSelector((state) => state.posts);
