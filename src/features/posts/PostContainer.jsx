@@ -29,6 +29,7 @@ const PostContainer = () => {
   }
 
   if (status === "failed") {
+    // TODO: Design an Error Message Component
     return <div>Error: {error}</div>;
   }
 

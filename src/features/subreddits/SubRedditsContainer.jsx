@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux"
 import SubReddit from "../../components/SubReddit"
 import { useEffect } from "react"
 import { fetchSubreddits } from "./RedditsSlice"
+import SubredditsSkeleton from "./SubredditsSkeleton"
 //import { subredditsMocks } from "../../utils/mocks"
 //import { selectSubreddit } from "./RedditsSlice"
 
-//TODO: Add sceleton loader to subbreddits 
 
 const SubRedditsContainer = () => {
   const dispatch = useDispatch()
@@ -16,7 +16,14 @@ const SubRedditsContainer = () => {
   }, [dispatch]);
 
   if (status === "loading") {
-    return <div>Loading posts...</div>;
+    return (
+      <div className="w-fit shadow-md min-w-[350px] max-w-[500px] p-5 px-14 rounded-md">
+        <h2 className="text-2xl font-bold mb-4">Subreddits</h2>
+        {Array.from(new Array(20)).map((skeleton,id)=>{
+          return (<SubredditsSkeleton key={id}/>)
+        })}
+      </div>
+    );
   }
 
   if (status === "failed") {
