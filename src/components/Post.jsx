@@ -23,6 +23,8 @@ const Post = ({
     comments = []
   }) => {
 
+    console.log(image);
+    
     
     return (
       <article className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative ps-16">
@@ -33,10 +35,10 @@ const Post = ({
           <FaArrowDown />
         </div>
 
-        
+
         <div className="post w-full">
           <h2 className="font-bold text-xl mb-3">{title}</h2>
-          <img className="w-full" src={image} alt="post-image" />
+          {image && <img className="w-full" src={image} alt="post-image" />}
           <div className="h-[1.5px] w-full bg-gray-200 my-5"></div>
           <div className="post-footer flex justify-between w-full mb-6">
             <div className="flex items-center gap-2">
