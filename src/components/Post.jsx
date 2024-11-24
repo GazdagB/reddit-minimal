@@ -4,6 +4,7 @@ import imagePlaceholder from '../assets/images/image_placeholder.png';
 import profileImagePlaceholder from '../assets/images/profile_image_placeholder.png';
 import Comment from './Comment';
 import { createUpvoteString } from '../utils/postsUtils';
+import { useState } from 'react';
 
 //Icon Imports
 import { LiaCommentsSolid } from 'react-icons/lia';
@@ -22,17 +23,31 @@ const Post = ({
     likes = 0,
     comments = []
   }) => {
+
+    const [isUpvoted, setIsUpvoted] = useState("")
+    
+    function handleUpVote(){
+      setIsUpvoted("upVote")
+    }
+
+    function handleDownVote(){
+      setIsUpvoted("downVote")
+    }
+    
+    
     return (
-      <article className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative ps-16">
+      <article className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative ps-24">
         {/* Vote Container */}
-        <div className="absolute top-12 left-6 text-gray-400 font-bold flex flex-col gap-2 cursor-pointer items-center justify-center">
-          <FaArrowUp />
+        <div className="absolute top-12 left-6 text-gray-400 font-bold flex flex-col gap-2 items-center justify-center">
+          <FaArrowUp onClick={handleUpVote} className={`cursor-pointer ${isUpvoted === "upVote" ? "text-orange-700" : ""}`} />
           {createUpvoteString(likes)}
-          <FaArrowDown />
+          <FaArrowDown onClick={handleDownVote} className={`cursor-pointer  ${isUpvoted === "downVote" ? "text-orange-700" : ""}`}/>
         </div>
+
+
         <div className="post w-full">
           <h2 className="font-bold text-xl mb-3">{title}</h2>
-          <img className="w-full" src={image} alt="post-image" />
+          {image && <img className="w-full" src={image} alt="post-image" />}
           <div className="h-[1.5px] w-full bg-gray-200 my-5"></div>
           <div className="post-footer flex justify-between w-full mb-6">
             <div className="flex items-center gap-2">
