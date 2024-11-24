@@ -1,4 +1,3 @@
-import React from 'react';
 import { Skeleton } from '@mui/material';
 import { LiaCommentsSolid } from 'react-icons/lia';
 import { FaArrowDown } from 'react-icons/fa';

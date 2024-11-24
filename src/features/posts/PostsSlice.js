@@ -8,6 +8,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 - Upvotes Property
 */
 
+//TODO: Replace the correct image from the json with the thumbnail
+
 //TODO: Add Reducer: UpVote and DownVote 
 
 export const fetchRedditPosts = createAsyncThunk(
