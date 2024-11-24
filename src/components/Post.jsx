@@ -22,6 +22,8 @@ const Post = ({
     likes = 0,
     comments = []
   }) => {
+
+    
     return (
       <article className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative ps-16">
         {/* Vote Container */}
@@ -30,6 +32,8 @@ const Post = ({
           {createUpvoteString(likes)}
           <FaArrowDown />
         </div>
+
+        
         <div className="post w-full">
           <h2 className="font-bold text-xl mb-3">{title}</h2>
           <img className="w-full" src={image} alt="post-image" />

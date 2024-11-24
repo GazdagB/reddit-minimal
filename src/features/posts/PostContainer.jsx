@@ -2,14 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Post from "../../components/Post";
 import { fetchRedditPosts } from "./PostsSlice";
+import { Skeleton } from '@mui/material';
+import PostSkeleton from "./PostSkeleton";
 
 //TODO: Add sceleton loader to posts 
 
 const PostContainer = () => {
   const dispatch = useDispatch();
-  const { posts, status, error } = useSelector((state) => state.posts);
+  const { posts, error } = useSelector((state) => state.posts);
   const { selectedSubreddit } = useSelector((state) => state.subreddits);
 
+  const status = 'loading'
   // Fetch posts whenever the selected subreddit changes
   useEffect(() => {
     if (selectedSubreddit) {
@@ -18,7 +21,12 @@ const PostContainer = () => {
   }, [dispatch, selectedSubreddit]);
 
   if (status === "loading") {
-    return <div>Loading posts...</div>;
+    return (<div className="flex flex-col justify-center w-full mx-4 items-center">
+      {/* Render skeleton placeholders */}
+      {Array.from(new Array(5)).map((postSkeleton,id) => {
+        return (<PostSkeleton key={id}/>)
+      })}
+    </div>)
   }
 
   if (status === "failed") {
@@ -27,6 +35,7 @@ const PostContainer = () => {
 
   return (
     <div className="flex flex-col justify-center w-full mx-4 items-center">
+     
       {posts.map((post) => (
         <Post
           key={post.id}
