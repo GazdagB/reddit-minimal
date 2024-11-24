@@ -5,14 +5,13 @@ import { fetchRedditPosts } from "./PostsSlice";
 import { Skeleton } from '@mui/material';
 import PostSkeleton from "./PostSkeleton";
 
-//TODO: Add sceleton loader to posts 
 
 const PostContainer = () => {
   const dispatch = useDispatch();
-  const { posts, error } = useSelector((state) => state.posts);
+  const { posts,status, error } = useSelector((state) => state.posts);
   const { selectedSubreddit } = useSelector((state) => state.subreddits);
 
-  const status = 'loading'
+  
   // Fetch posts whenever the selected subreddit changes
   useEffect(() => {
     if (selectedSubreddit) {

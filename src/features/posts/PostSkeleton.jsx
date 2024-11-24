@@ -27,7 +27,7 @@ const PostSkeleton = () => {
           </div>
           <Skeleton width="30%" variant="text" />
           <div className="comment-container flex gap-2 items-center cursor-pointer">
-            <LiaCommentsSolid className="text-xl text-gray-500" />
+            <LiaCommentsSolid className="text-[2.5rem] text-gray-500" />
             <Skeleton width="100%" variant="text" />
           </div>
         </div>
