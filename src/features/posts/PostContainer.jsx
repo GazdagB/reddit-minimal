@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Post from "../../components/Post";
 import { fetchRedditPosts } from "./PostsSlice";
-import { Skeleton } from '@mui/material';
 import PostSkeleton from "./PostSkeleton";
 
 
