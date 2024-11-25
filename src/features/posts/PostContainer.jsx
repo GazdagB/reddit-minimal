@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import Post from "../../components/Post";
 import { fetchRedditPosts } from "./PostsSlice";
 import PostSkeleton from "./PostSkeleton";
-
+import { selectFilteredPosts } from "./PostsSlice";
 
 const PostContainer = () => {
   const dispatch = useDispatch();
   const { posts,status, error } = useSelector((state) => state.posts);
   const { selectedSubreddit } = useSelector((state) => state.subreddits);
-
+  const filteredPosts = useSelector(selectFilteredPosts);
   
   // Fetch posts whenever the selected subreddit changes
   useEffect(() => {
@@ -35,7 +35,7 @@ const PostContainer = () => {
   return (
     <div className="flex flex-col justify-center w-full mx-4 items-center">
      
-      {posts.map((post) => (
+      {filteredPosts.map((post) => (
         <Post
           key={post.id}
           title={post.title}

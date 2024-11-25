@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit';
+
 
 //TODO: Add Posts to store and comments as well
 /*
@@ -51,6 +52,7 @@ export const fetchRedditPosts = createAsyncThunk(
 const initialState = {
   posts: [],
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  searchTerm: "",
   error: null,
 };
 
@@ -64,6 +66,9 @@ const postsSlice = createSlice({
         post.commentsOpened = !post.commentsOpened;
       }
     },
+    setSearchTerm(state, action) {
+        state.searchTerm = action.payload;
+      },
   },
   extraReducers: (builder) => {
     builder
@@ -82,5 +87,17 @@ const postsSlice = createSlice({
   },
 });
 
-export const { toggleComments } = postsSlice.actions;
+export const selectFilteredPosts = createSelector(
+    (state) => state.posts.posts,
+    (state) => state.posts.searchTerm,
+    (posts, searchTerm) => {
+      if (!searchTerm) return posts;
+      const lowerCasedSearchTerm = searchTerm.toLowerCase();
+      return posts.filter((post) =>
+        post.title.toLowerCase().includes(lowerCasedSearchTerm)
+      );
+    }
+  );
+
+export const { toggleComments, setSearchTerm  } = postsSlice.actions;
 export default postsSlice.reducer;
