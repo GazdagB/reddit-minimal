@@ -10,19 +10,31 @@ import { useState } from 'react';
 import { LiaCommentsSolid } from 'react-icons/lia';
 import { FaArrowDown } from 'react-icons/fa';
 import { FaArrowUp } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleComments } from '../features/posts/PostsSlice';
+import { fetchCommentsForPost } from '../features/posts/PostsSlice';
 
 //TODO: Create comments in the posts slice + In the mocks
 
 const Post = ({
     title = 'This is the title of the post',
+    id,
     image = imagePlaceholder,
     profileImg = profileImagePlaceholder,
     publicationTime = 'xy hours ago',
     commentCount = 0,
     userName = 'User',
     likes = 0,
-    comments = []
   }) => {
+
+    const dispatch = useDispatch();
+    const commentsOpened = useSelector((state) =>
+      state.posts.posts.find((post) => post.id === id)?.commentsOpened
+    );
+
+    const commentsForPost = useSelector((state)=> 
+    state.posts.posts.find((post)=>post.id ===id).comments
+    )
 
     const [isUpvoted, setIsUpvoted] = useState("")
     
@@ -33,6 +45,12 @@ const Post = ({
     function handleDownVote(){
       setIsUpvoted("downVote")
     }
+
+    function handleToggleComments(){
+      dispatch(fetchCommentsForPost(id))
+      dispatch(toggleComments(id))
+    }
+    
     
     
     return (
@@ -59,19 +77,20 @@ const Post = ({
               <p className="font-bold text-primary">{userName}</p>
             </div>
             <div className="publication-time text-gray-400">{publicationTime}</div>
-            <div className="comment-container flex gap-2 items-center cursor-pointer">
+            <div onClick={handleToggleComments} className="comment-container flex gap-2 items-center cursor-pointer">
               <LiaCommentsSolid className="text-xl text-gray-500" />
               {commentCount}
             </div>
           </div>
           <div className="comments">
-            {comments.map((comment, index) => (
+            {commentsOpened && commentsForPost.map((comment, index) => (
               <Comment
-                key={index}
+                key={comment.id}
+                id={id}
                 profileUrl={comment.profileUrl}
-                username={comment.username}
-                created={comment.created}
-                text={comment.text}
+                username={comment.author}
+                created={comment.createdAt}
+                text={comment.body_html}
               />
             ))}
           </div>

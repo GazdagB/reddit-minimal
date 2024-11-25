@@ -38,11 +38,12 @@ const PostContainer = () => {
       {filteredPosts.map((post) => (
         <Post
           key={post.id}
+          id={post.id}
           title={post.title}
           image={post.imageUrl}
           profileImg={post.profileUrl}
           publicationTime={post.posted}
-          commentCount={post.comments.length} // Pass the length, not the array
+          commentCount={post.num_comments} // Pass the length, not the array
           userName={post.user}
           likes={post.upvotes}
           comments={post.comments} // Pass the whole comments array if needed

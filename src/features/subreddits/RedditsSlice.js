@@ -13,7 +13,7 @@ export const fetchSubreddits = createAsyncThunk(
                 subredditName: child.data.display_name_prefixed, 
                 url: `https://www.reddit.com${child.data.url}`, 
                 subscribers: child.data.subscribers, 
-                icon: child.data.icon_img || "https://via.placeholder.com/50"
+                icon: child.data.icon_img || "https://via.placeholder.com/50",
             }));
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);

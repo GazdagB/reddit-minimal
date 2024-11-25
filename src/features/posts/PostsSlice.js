@@ -11,6 +11,32 @@ import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 
 
 //TODO: Add Reducer: UpVote and DownVote
+export const fetchCommentsForPost = createAsyncThunk(
+  'pots/fetchCommentsForPost',
+  async (postId, thunkApi) => {
+    try {
+      const response = await fetch(`https://www.reddit.com/comments/${postId}.json`);
+      if (!response.ok) throw new Error('Failed to fetch comments');
+
+      const data = await response.json();
+
+      // Limit to 15 and map comments
+      const comments = data[1].data.children.slice(0, 15).map((child) => ({
+        id: child.data.id,
+        author: child.data.author,
+        body_html: child.data.body,
+        upvotes: child.data.ups,
+        createdAt: new Date(child.data.created_utc * 1000).toLocaleString(),
+        //TODO: Fetch user Picture as well 
+        profileUrl: 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_1.png', // Default avatar
+      }));
+
+      return { postId, comments };
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+)
 
 export const fetchRedditPosts = createAsyncThunk(
   'posts/fetchRedditPosts',
@@ -41,6 +67,7 @@ export const fetchRedditPosts = createAsyncThunk(
         posted: new Date(child.data.created_utc * 1000).toLocaleString(),
         user: child.data.author,
         commentsOpened: false,
+        num_comments: child.data.num_comments,
         comments: [], // We'll keep this empty initially
       }));
     } catch (error) {
@@ -83,6 +110,28 @@ const postsSlice = createSlice({
       .addCase(fetchRedditPosts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
+      }).addCase(fetchCommentsForPost.pending, (state,action)=>{
+        const { postId } = action.payload;
+        const post = state.posts.find((post) => post.id === postId);
+        if (post) {
+          post.status = 'loading'; 
+        }
+      })
+      .addCase(fetchCommentsForPost.fulfilled, (state, action) => {
+        const { postId, comments } = action.payload;
+        const post = state.posts.find((post) => post.id === postId);
+        if (post) {
+          post.status = 'succeeded'; 
+          post.comments = comments; // Update the comments for the specific post
+        }
+      })
+      .addCase(fetchCommentsForPost.rejected, (state, action) => {
+        const { postId } = action.payload;
+        const post = state.posts.find((post) => post.id === postId);
+        if (post) {
+          post.status = 'failed'; 
+        }
+        state.error = action.payload;
       });
   },
 });
@@ -99,5 +148,5 @@ export const selectFilteredPosts = createSelector(
     }
   );
 
-export const { toggleComments, setSearchTerm  } = postsSlice.actions;
+export const { toggleComments, setSearchTerm } = postsSlice.actions;
 export default postsSlice.reducer;
