@@ -46,9 +46,17 @@ const Post = ({
       setIsUpvoted("downVote")
     }
 
-    function handleToggleComments(){
-      dispatch(fetchCommentsForPost(id))
-      dispatch(toggleComments(id))
+    function handleToggleComments() {
+      const post = commentsOpened;
+      if (!post) {
+        // Fetch comments if they are not already opened
+        dispatch(fetchCommentsForPost(id)).then(() => {
+          dispatch(toggleComments(id));
+        });
+      } else {
+        // If comments are already opened, just toggle
+        dispatch(toggleComments(id));
+      }
     }
     
     

@@ -110,26 +110,27 @@ const postsSlice = createSlice({
       .addCase(fetchRedditPosts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
-      }).addCase(fetchCommentsForPost.pending, (state,action)=>{
-        const { postId } = action.payload;
+      })
+      .addCase(fetchCommentsForPost.pending, (state, action) => {
+        const postId = action.meta.arg; // Correct way to access postId
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
-          post.status = 'loading'; 
+          post.status = 'loading';
         }
       })
       .addCase(fetchCommentsForPost.fulfilled, (state, action) => {
         const { postId, comments } = action.payload;
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
-          post.status = 'succeeded'; 
-          post.comments = comments; // Update the comments for the specific post
+          post.status = 'succeeded';
+          post.comments = comments;
         }
       })
       .addCase(fetchCommentsForPost.rejected, (state, action) => {
-        const { postId } = action.payload;
+        const postId = action.meta.arg; // Again, fetch postId from meta
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
-          post.status = 'failed'; 
+          post.status = 'failed';
         }
         state.error = action.payload;
       });
