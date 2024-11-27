@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+       "mdc": "990px"
+      },
       colors: {
         primary: 'rgb(var(--color-primary))'
       }

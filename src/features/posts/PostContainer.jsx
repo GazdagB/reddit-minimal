@@ -33,7 +33,7 @@ const PostContainer = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center w-full mx-4 items-center">
+    <div className="flex flex-col justify-center w-full mbc:mx-4  items-center">
      
       {filteredPosts.map((post) => (
         <Post
