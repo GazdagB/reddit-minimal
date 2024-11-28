@@ -115,14 +115,14 @@ const postsSlice = createSlice({
         const postId = action.meta.arg; // Correct way to access postId
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
-          post.status = 'loading';
+          post.commentsStatus = 'loading';
         }
       })
       .addCase(fetchCommentsForPost.fulfilled, (state, action) => {
         const { postId, comments } = action.payload;
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
-          post.status = 'succeeded';
+          post.commentsStatus = 'succeeded';
           post.comments = comments;
         }
       })
@@ -130,7 +130,7 @@ const postsSlice = createSlice({
         const postId = action.meta.arg; // Again, fetch postId from meta
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
-          post.status = 'failed';
+          post.commentsStatus = 'failed';
         }
         state.error = action.payload;
       });

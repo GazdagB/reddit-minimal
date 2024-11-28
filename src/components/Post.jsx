@@ -13,6 +13,8 @@ import { FaArrowUp } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleComments } from '../features/posts/PostsSlice';
 import { fetchCommentsForPost } from '../features/posts/PostsSlice';
+import { Skeleton } from '@mui/material';
+import CommentsSkeleton from './CommentsSkeleton';
 
 //TODO: Create comments in the posts slice + In the mocks
 
@@ -36,6 +38,8 @@ const Post = ({
     state.posts.posts.find((post)=>post.id ===id).comments
     )
 
+    const commentsStatus = useSelector((state)=> state.posts.posts.find((post)=> post.id ===id).commentsStatus)
+
     const [isUpvoted, setIsUpvoted] = useState("")
     
     function handleUpVote(){
@@ -50,14 +54,15 @@ const Post = ({
       const post = commentsOpened;
       if (!post) {
         // Fetch comments if they are not already opened
-        dispatch(fetchCommentsForPost(id)).then(() => {
-          dispatch(toggleComments(id));
-        });
+        dispatch(toggleComments(id))
+        dispatch(fetchCommentsForPost(id))
       } else {
         // If comments are already opened, just toggle
         dispatch(toggleComments(id));
       }
     }
+    
+    
     
     
     
@@ -91,6 +96,9 @@ const Post = ({
             </div>
           </div>
           <div className="comments">
+          {commentsStatus === "loading" && (!commentsForPost || commentsForPost.length === 0) && 
+          <CommentsSkeleton size={10}/>
+          }
             {commentsOpened && commentsForPost.map((comment, index) => (
               <Comment
                 key={comment.id}
