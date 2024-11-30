@@ -5,9 +5,9 @@ import { FaArrowUp } from 'react-icons/fa';
 
 const PostSkeleton = () => {
   return (
-    <div className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative ps-16">
+    <div className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative sm:ps-16">
       {/* Upvote Section */}
-      <div className="absolute top-12 left-6 text-gray-400 font-bold flex flex-col gap-2 cursor-pointer items-center justify-center">
+      <div className="absolute hidden sm:flex top-12 left-6 text-gray-400 font-bold flex-col gap-2 cursor-pointer items-center justify-center">
         <FaArrowUp />
         <Skeleton animation="pulse" variant="text" width="100%" height={40} />
         <FaArrowDown />
@@ -24,7 +24,9 @@ const PostSkeleton = () => {
             <Skeleton width={20} height={20} variant="circular" />
             <Skeleton width={100} variant="text" />
           </div>
-          <Skeleton width="30%" variant="text" />
+          <div className='hidden sm:block'>
+            <Skeleton width="30%" variant="text" />
+          </div>
           <div className="comment-container flex gap-2 items-center cursor-pointer">
             <LiaCommentsSolid className="text-[2.5rem] text-gray-500" />
             <Skeleton width="100%" variant="text" />

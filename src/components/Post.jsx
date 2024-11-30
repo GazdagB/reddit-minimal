@@ -67,9 +67,9 @@ const Post = ({
     
     
     return (
-      <article className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative ps-24">
+      <article className="max-w-[900px] w-full p-5 shadow-lg rounded-md flex relative sm:ps-24">
         {/* Vote Container */}
-        <div className="absolute top-12 left-6 text-gray-400 font-bold flex flex-col gap-2 items-center justify-center">
+        <div className="absolute hidden sm:flex top-12 left-6 text-gray-400 font-bold flex-col gap-2 items-center justify-center">
           <FaArrowUp onClick={handleUpVote} className={`cursor-pointer ${isUpvoted === "upVote" ? "text-orange-700" : ""}`} />
           {createUpvoteString(likes)}
           <FaArrowDown onClick={handleDownVote} className={`cursor-pointer  ${isUpvoted === "downVote" ? "text-orange-700" : ""}`}/>
@@ -89,7 +89,7 @@ const Post = ({
               />
               <p className="font-bold text-primary">{userName}</p>
             </div>
-            <div className="publication-time text-gray-400">{publicationTime}</div>
+            <div className="publication-time hidden sm:block text-gray-400">{publicationTime}</div>
             <div onClick={handleToggleComments} className="comment-container flex gap-2 items-center cursor-pointer">
               <LiaCommentsSolid className="text-xl text-gray-500" />
               {commentCount}
