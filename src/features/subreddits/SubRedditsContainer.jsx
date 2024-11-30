@@ -31,7 +31,7 @@ const SubRedditsContainer = () => {
   }
 
   return (
-    <div className="w-fit shadow-md min-w-[350px] max-w-[500px] p-5 px-14 rounded-md">
+    <div className="mdc:w-fit w-full shadow-md min-w-[350px] max-w-[500px] p-5 px-16 rounded-md">
         <h2 className="text-2xl font-bold mb-4">Subreddits</h2>
         {subreddits.map(subred => {
           return (<SubReddit subred={subred} key={subred.id} image={subred.icon} subRedditTitle={subred.subredditName}/>)

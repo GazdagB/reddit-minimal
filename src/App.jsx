@@ -9,7 +9,7 @@ function App() {
     <Provider store={store}> {/* Wrap your components with Provider */}
       <div className="">
         <Navbar />
-        <div className="app flex flex-col mdc:flex-row justify-between items-start w-screen">
+        <div className="app flex flex-col mdc:flex-row justify-between items-center mdc:items-start w-screen">
           <PostContainer />
           <SubRedditsContainer />
         </div>
